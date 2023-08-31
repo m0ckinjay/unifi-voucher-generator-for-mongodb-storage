@@ -1,27 +1,30 @@
 # UniFi Voucher Generator
 
-Generates UniFi Hotspot vouchers using the UniFi controller API ready for printing. Customise the design using CSS.
+Generates UniFi Hotspot vouchers using the UniFi controller API saved to a csv file which can then
+be easily imported to mongodb - A django app then reads the db and displays the vouchers
 
-This should work on any Linux/Mac machine that can reach the UniFi controller.
+This should work on any Linux/Mac machine that can reach the UniFi controller - Bash shell required
 
-**Feb 2020**: Now works with UniFi 5.12.35 Controller.
 
-![Preview of generated output](preview.png)
+
+![Preview of generated output](Screenshot.png)
 
 ## Setup
 
 1. Clone the repo:
 
 ```
-git clone https://github.com/davidmaitland/unifi-voucher-generator.git
+git clone https://github.com/m0ckinjay/unifi-voucher-generator-for-mongodb-storage.git
 ```
 
 2. Set the variables in `unifi-api.sh` with your controller's details (username, password, baseurl, site).
 
-3. Optionally customise the variables in `gen.sh` and the styles in `style.css`.
+3. Optionally customise the variables in `gen.sh` 
 
-## Run
+## To create vouchers
 
 1. Run `./gen.sh` $time $amount // for example ./gen.sh 100 10  - 100minutes 10 codes. 
 
-2. Open `vouchers.html` and print!
+## To authenticate a client using their mac-address
+
+1. Run `./runner.sh` <mac-address> <time>  // for example ./runner.sh 00:00:00:00:00:00 525600 - Authenticate client with mac 00:00:00:00:00:00 for 525600 minutes

@@ -15,10 +15,10 @@ if [ -n "$2" ]; then
 else
   amount=10 # New vouchers to generate
 fi
+# So by the two if statements above, without providing 2 arguments required when generating vouchers, the script generates 10 vouchers each lasting 60 minutes
 
-# HTML Settings
-line1="WiFi Voucher"
-line2="Valid for $time minutes"
+#Necessary to format in hours as the display is {24,72.96} hours
+line2="$(($time/60))"
 
 # Generate vouchers
 unifi_login
@@ -29,21 +29,23 @@ unifi_logout
 vouchers=`awk -F"[,:]" '{for(i=1;i<=NF;i++){if($i~/code\042/){print $(i+1)} } }' vouchers.tmp | sed 's/\"//g'`
 
 # Build HTML
-if [ -e vouchers.html ]; then
+if [ -e vouchers.csv ]; then
   echo "Removing old vouchers."
-  rm vouchers.html
+  rm vouchers.csv
 fi
 
-echo '<html><head><link rel="stylesheet" href="style.css" /></head><body>' >> vouchers.html
+#necessary columns for db insertion
+echo "_id","hours" >> vouchers.csv
 
 for code in $vouchers
 do
     line3=${code:0:5}" "${code:5:10}
-    html='<div class="voucher"><div class="line1">'$line1'</div><div class="line2">'$line2'</div><div class="line3">'$line3'</div></div>'
-    echo $html >> vouchers.html
+    values=$line3','$line2
+   
+    echo $values >> vouchers.csv
 done
 
-echo "</body></html>" >> vouchers.html
+
 
 # Remove tmp
 if [ -e vouchers.tmp ]; then

@@ -1,15 +1,23 @@
 #!/bin/bash
+set -e
 
-#username=ubnt
-#password=ubnt
-#baseurl=https://unifi:8443
-#site=default
+
+
+username=
+password=
+baseurl=
+site=
 #[ -f ./unifi_sh_env ] && . ./unifi_sh_env
 
+#mktemp creates a temp file and returns the name of the temp file created
 cookie=$(mktemp)
 
 curl_cmd="curl --tlsv1 --silent --cookie ${cookie} --cookie-jar ${cookie} --insecure "
 
+
+#command processes arguments supplied, checking whether they contain the = sign
+#if they do, the key and value are separated and appended to the payload which is
+#initialized as an empty string 
 named_args_to_payload() {
     payload=""
     for a in "$@" ; do
@@ -22,6 +30,7 @@ named_args_to_payload() {
     echo ${payload}
 }
 
+#checks for supplied, required variables
 unifi_requires() {
     if [ -z "$username" -o -z "$password" -o -z "$baseurl" -o -z "$site" ] ; then
         echo "Error! please define required env vars before including unifi_sh. E.g. "
