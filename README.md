@@ -19,7 +19,7 @@ git clone https://github.com/m0ckinjay/unifi-voucher-generator-for-mongodb-stora
 
 2. Set the variables in `unifi-api.sh` with your controller's details (username, password, baseurl, site).
 
-3. Optionally customise the variables in `gen.sh` 
+
 
 ## To create vouchers
 
