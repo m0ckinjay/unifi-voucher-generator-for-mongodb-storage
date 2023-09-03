@@ -2,7 +2,7 @@
 
 Generates UniFi Hotspot vouchers using the UniFi controller API saved to a csv file which can then
 be easily imported to mongodb - A django app then reads the db and displays the vouchers
-Django app courtesy of [@Frost-Codes](https://github.com/Frost-Codes)
+Django app courtesy of [Frost-Codes](https://github.com/Frost-Codes/UniFi-Voucher-Generator.git)
 
 This should work on any Linux/Mac machine that can reach the UniFi controller - Bash shell required
 
