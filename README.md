@@ -27,11 +27,13 @@ git clone https://github.com/m0ckinjay/unifi-voucher-generator-for-mongodb-stora
 1. Run 
 ```./gen.sh $time $amount```
 
-   Example ./gen.sh 100 10  - 100minutes 10 codes. 
+
+> **Example** ./gen.sh 100 10  - 100minutes 10 codes. 
 
 ## To authenticate a client using their mac-address
 
 1. Run 
 ```./runner.sh <mac-address> <time> ```
 
-    Example ./runner.sh 00:00:00:00:00:00 525600 - Authenticate client with mac 00:00:00:00:00:00 for 525600 minutes
+> **Example** ./runner.sh 00:00:00:00:00:00 525600 - Authenticate client with mac 00:00:00:00:00:00 for 525600 minutes
+
